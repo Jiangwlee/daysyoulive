@@ -19,7 +19,7 @@ opt_parser = OptionParser.new do |opts|
   end  
 
   opts.on('-h', '--help', 'Show this message') do
-    puts opts
+    puts opts.help
     exit
   end
 end
@@ -28,14 +28,14 @@ begin
   opt_parser.parse!
 rescue OptionParser::MissingArgument 
   puts "    *** Excpetion : #{$!} ***"
-  puts opt_parser
+  puts opt_parser.help
   exit
 end
 
-birthday = nil
+birthday = Date.parse('2014-01-26')
 begin
   if not options.has_key? :birthday
-    birthday = Date.parse('2014-01-26')
+    puts "Use the default dirthday : #{birthday}"
   else
     birthday = Date.parse(options[:birthday])
   end
